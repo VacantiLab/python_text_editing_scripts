@@ -4,7 +4,7 @@ import re
 import pdb
 
 input_file = '/Users/Nate/Dropbox/Research/Vacanti_Laboratory/Greece_Conference_2018_09/dietary_mRNA_expression/analysis/sample_descriptions.txt'
-output_file[:-4] + '_output.txt'
+output_file = input_file[:-4] + '_output.txt'
 
 
 # Get a list of the genes from the pasted pathway information from KEGG
@@ -13,17 +13,15 @@ with open(input_file,'r') as file_read:
     line_list = file_read.readlines()
     n_lines = len(line_list)
     for line in line_list:
-        item_list = re.findall('\tsubject.*\t;',line)
+        item_list = re.findall('subject [0-9][0-9]{0,1}',line)
 
-pdb.set_trace()
-
-# Write the gene symbols and their descriptions to a text file
+# Write the extracted text to a file, each member of the list on a single line
 with open(output_file,'w') as file_write:
-    n_lines = length(item_list)
+    n_lines = len(item_list)
     i = 1
     for item in item_list:
         line = item + '\n'
-        if i == n_lines - 1:
-            line = item_list[i]
+        if i == n_lines:
+            line = item
         file_write.write(line)
         i = i + 1
